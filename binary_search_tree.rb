@@ -1,20 +1,4 @@
-require "byebug"
-
 class BinarySearchTree
-  def self.build_test_tree
-    root = BinarySearchTree.new(10)
-    root.insert(5)
-    root.insert(13)
-    root.insert(1)
-    root.insert(3)
-    root.insert(12)
-    root.insert(111)
-    root.insert(11)
-    root.insert(22)
-    root.insert(-1)
-    root
-  end
-
   attr_reader :data
   attr_accessor :left_child, :right_child, :parent
 
@@ -148,6 +132,3 @@ class BinarySearchTree
     nil
   end
 end
-
-
-bst = BinarySearchTree.build_test_tree
