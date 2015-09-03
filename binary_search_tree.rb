@@ -155,8 +155,6 @@ class BinarySearchTree
     delete_children
     display
     while data_idx < left_data.length || data_idx < right_data.length
-      p "#{left_data[left_data.length - 1 - data_idx]}"
-      p "#{right_data[data_idx]}"
       insert(left_data[left_data.length - 1 - data_idx]) if left_data[left_data.length - 1 - data_idx]
       insert(right_data[data_idx]) if right_data[data_idx]
       display
