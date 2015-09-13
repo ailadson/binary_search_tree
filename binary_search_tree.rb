@@ -140,6 +140,15 @@ class BinarySearchTree
     nil
   end
 
+  def height(n = 0)
+    return n if @right_child.nil? && @left_child.nil?
+
+    l_height = @left_child ? @left_child.height(n+1) : 0
+    r_height = @right_child ? @right_child.height(n+1) : 0
+
+    [l_height, r_height].max
+  end
+
   def balance(new_tree_data = traverse)
     pivot = new_tree_data.length/2
     @data = new_tree_data[pivot]
@@ -147,7 +156,7 @@ class BinarySearchTree
     right_data = new_tree_data[(pivot+1)..-1]
     data_idx = 0
     delete_children
-    display
+
     while data_idx < left_data.length || data_idx < right_data.length
       insert(left_data[left_data.length - 1 - data_idx]) if left_data[left_data.length - 1 - data_idx]
       insert(right_data[data_idx]) if right_data[data_idx]
