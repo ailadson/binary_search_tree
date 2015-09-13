@@ -1,18 +1,10 @@
 class BinarySearchTree
   attr_reader :data
   attr_accessor :left_child, :right_child, :parent
-  
-  def self.create_imbalanced_tree
+
+  def self.create_imbalanced_tree(height)
     root = BinarySearchTree.new(1)
-    root.insert(2)
-    root.insert(3)
-    root.insert(4)
-    root.insert(5)
-    root.insert(6)
-    root.insert(7)
-    root.insert(8)
-    root.insert(9)
-    root.insert(10)
+    (height - 1).times{ |i| root.insert(i + 2) }
     root
   end
 
@@ -123,12 +115,14 @@ class BinarySearchTree
   end
 
   def display(depth=0)
-    puts (("    " * depth) + "|" + "Node: #{data}")
     if @left_child
-      puts (("    " * depth) + "|---" + "->LEFT CHILD")
       @left_child.display(depth+1)
+      puts (("    " * depth) + "|---" + "->LEFT CHILD")
+      puts (("    " * depth) + "|")
     end
+    puts (("    " * depth) + "|" + "Node: #{data}")
     if @right_child
+      puts (("    " * depth) + "|")
       puts (("    " * depth) + "|---" +  "->RIGHT CHILD")
       @right_child.display(depth+1)
     end
@@ -145,7 +139,7 @@ class BinarySearchTree
 
     nil
   end
-  
+
   def balance(new_tree_data = traverse)
     pivot = new_tree_data.length/2
     @data = new_tree_data[pivot]
@@ -160,10 +154,10 @@ class BinarySearchTree
       display
       data_idx += 1
     end
-    
+
     self
   end
-  
+
   def delete_children
     traverse.each{ |d| delete(d) unless d == @data }
     @right_child = nil
